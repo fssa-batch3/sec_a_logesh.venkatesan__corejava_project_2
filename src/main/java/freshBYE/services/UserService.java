@@ -17,7 +17,7 @@ public class UserService {
 		try {
 		if(UserValidator.ValidateUser(user)) { 
 			if(userDAO.register(user)) {
-				System.out.println(user.getUsername() + " Successfully Registered!");
+				System.out.println(user.getUserName() + " Successfully Registered!");
 				return true;
 			} else {
 				System.out.println("Registration not successful!");
@@ -36,7 +36,7 @@ public class UserService {
 		UserDAO userDAO = new UserDAO();
 		try {
 			if(userDAO.login(user)) {
-				System.out.println("\n" + user.email + " Login Successful!");
+				System.out.println("\n" + user.Email + " Login Successful!");
 				return true;
 			} else {
 				System.out.println("\n" + " Login Not Successful! ReCheck Your Credentials");

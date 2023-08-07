@@ -13,7 +13,7 @@ public class UserDAO {
 	
 	 //connect to database
 	public Connection getConnection() throws SQLException {
-	 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root","root");
+	 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/projects", "root","780808");
 	 return connection;
 	}
 	
@@ -24,9 +24,9 @@ public class UserDAO {
 	   
 	   Connection connection = getConnection();
 	   
-	   String selectQuery = "SELECT * FROM user WHERE email = ?";
+	   String selectQuery = "SELECT * FROM user WHERE Email = ?";
 	   PreparedStatement pst = connection.prepareStatement(selectQuery);
-	   pst.setString(1, user.email);
+	   pst.setString(1, user.Email);
 	   ResultSet resultSet = pst.executeQuery();
 	   
 	   while (resultSet.next()) {
@@ -48,15 +48,14 @@ public class UserDAO {
 		Connection connection = getConnection();
 		
 		// Prepare SQL Statement
-		String insertQuery = "INSERT INTO user (userID,username,gender,mobile_number,date_of_birth,email,password) VALUES (?,?,?,?,?,?,?);";
+		String insertQuery = "INSERT INTO user (UUID,UserName,Email,Password,Mobile,profile) VALUES (?,?,?,?,?,?);";
 		PreparedStatement pst = connection.prepareStatement(insertQuery);
-		pst.setInt(1, user.getUserID());
-		pst.setString(2, user.getUsername());
-		pst.setString(3, user.getGender());
-		pst.setString(4, user.getMobile_number());
-		pst.setString(5, user.getDate_of_birth());
-		pst.setString(6, user.getEmail());
-		pst.setString(7, user.getPassword());
+		pst.setInt(1, user.getUUID());
+		pst.setString(2, user.getUserName());
+		pst.setString(5, user.getMobile_number());
+		pst.setString(6, user.getProfile());
+		pst.setString(3, user.getEmail());
+		pst.setString(4, user.getPassword());
 		//Execute query
 		int rows = pst.executeUpdate();
 		

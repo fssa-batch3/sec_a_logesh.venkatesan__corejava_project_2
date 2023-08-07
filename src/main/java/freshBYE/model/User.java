@@ -2,81 +2,74 @@ package freshBYE.model;
 
 public class User {
 
-	private int userID;
-	private String username;
-	private String gender;
-	private String mobile_number;
-	private String date_of_birth;
-	public String email;
+	private int UUID;
+	private String UserName;
+	private String Mobile;
+	private String profile;
+	public String Email;
 	public String password;
 	
-	public User(String username, String gender , String mobile_number , String date_of_birth, String email, String password) {
+	public User(String UserName , String Mobile , String profile, String Email, String password) {
 		super();
-		this.userID = userID;
-		this.username = username;
-		this.gender = gender;
-		this.mobile_number = mobile_number;
-		this.date_of_birth = date_of_birth;
-		this.email = email;
+		this.UUID = UUID;
+		this.UserName = UserName;
+		this.Mobile = Mobile;
+		this.profile = profile;
+		this.Email = Email;
 		this.password = password;
 	}
 	
 	public User(String email, String password) {
 		super();
-		this.email = email;
+		this.Email = email;
 		this.password = password;
 	}
 	
 	public String toString() {
-		return "UserID: " + userID + "username: " + username + "gender: " + gender + "mobile_number: " + mobile_number + "date_of_birth: " + date_of_birth + "Email: " + email + " Password: " + password;
+		return "UserID: " + UUID + "username: " + UserName + "mobile_number: " + Mobile + "profileURL: " + profile + "Email: " + Email + " Password: " + password;
 	}
 
-	public int getUserID() {
-		return userID;
+	public int getUUID() {
+		return UUID;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUUID(int userID) {
+		this.UUID = userID;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return UserName;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.UserName = username;
 	}
 
-	public String getGender() {
-		return gender;
-	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+	
 
 	public String getMobile_number() {
-		return mobile_number;
+		return Mobile;
 	}
 
 	public void setMobile_number(String mobile_number) {
-		this.mobile_number = mobile_number;
+		this.Mobile = mobile_number;
 	}
 
-	public String getDate_of_birth() {
-		return date_of_birth;
+	public String getProfile() {
+		return profile;
 	}
 
-	public void setDate_of_birth(String date_of_birth) {
-		this.date_of_birth = date_of_birth;
+	public void setProfile(String date_of_birth) {
+		this.profile = date_of_birth;
 	}
 
 	public String getEmail() {
-		return email;
+		return Email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.Email = email;
 	}
 
 	public String getPassword() {

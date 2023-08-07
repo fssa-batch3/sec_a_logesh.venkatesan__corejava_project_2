@@ -17,7 +17,7 @@ public class TestValidatePassword {
 		
 		UserService userService = new UserService();
 		
-		User user = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","Ajmal@123");
+		User user = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "logesh@gmail.com","Logesh@123");
 		
 		try {
 			assertTrue(userService.registerUser(user));
@@ -31,7 +31,7 @@ public class TestValidatePassword {
 		
 		UserService userService = new UserService();
 		
-		User user = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","Ajmal123");
+		User user = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "logesh@gmail.com","Logesh123");
 		
 		try {
 			assertFalse(userService.registerUser(user));
@@ -46,7 +46,7 @@ public class TestValidatePassword {
 		
 		UserService userService = new UserService();
 		
-		User user = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","Ajmal@@@@@");
+		User user = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "logesh@gmail.com","logesh");
 		
 		try {
 			assertFalse(userService.registerUser(user));
@@ -60,7 +60,7 @@ public class TestValidatePassword {
 		
 		UserService userService = new UserService();
 		
-		User user = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","@1234567");
+		User user = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "logesh@gmail.com","899123");
 		
 		try {
 			assertFalse(userService.registerUser(user));
@@ -74,7 +74,7 @@ public class TestValidatePassword {
 		
 		UserService userService = new UserService();
 		
-		User user = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","Ajmal@1");
+		User user = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "logesh@gmail.com","Logesh3");
 		
 		try {
 			assertFalse(userService.registerUser(user));
@@ -88,7 +88,7 @@ public class TestValidatePassword {
 		
 		UserService userService = new UserService();
 		
-		User user = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","ajmal@1234");
+		User user = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "logesh@gmail.com","logesh123");
 		
 		try {
 			assertFalse(userService.registerUser(user));

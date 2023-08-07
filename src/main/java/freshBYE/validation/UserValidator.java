@@ -11,7 +11,7 @@ public class UserValidator {
 	
 	// if three conditions valid then user valid
 	public static boolean ValidateUser(User user) throws InvalidUserException {
-		if(user != null && validateName(user.getUsername()) && validateEmail(user.getEmail()) 
+		if(user != null && validateName(user.getUserName()) && validateEmail(user.getEmail()) 
 				&& validatePassword(user.getPassword())) {
 			return true;
 		} else {

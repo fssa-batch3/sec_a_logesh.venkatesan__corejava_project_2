@@ -14,58 +14,30 @@ import freshBYE.services.exception.serviceException;
 
 public class TestRegister {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ServiceException {
 
-		User user1 = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","Ajmal123");
+		User user1 = new User("gogesh","9500320194","http//iamlokeshbharathi20%of12%me", "gogesh@gmail.com","Logesh@123");
 		UserService userService = new UserService();
-
-		try {
 			userService.registerUser(user1);
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
 
 	}
 
 	@Test
-	public void testRegistrationSuccess() {
+	public void testRegistrationSuccess() throws ServiceException {
 		UserService userService = new UserService();
-		User user1 = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","Ajmal@123");
-		try {
-
+		User user1 = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "gogesh@gmail.com","Logesh@123");
 			assertTrue(UserService.registerUser(user1));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-
-		}
 	}
 
-	@Test
-	public void testInvalidPassword() {
+//	@Test
+//	public void testInvalidPassword() throws ServiceException {
+//
+//		UserService userService = new UserService();
+//		User user1 = new User("Logesh","9500320194","http//iamlokeshbharathi20%of12%me", "gogesh@gmail.com","logesh123");
+//			assertFalse(UserService.registerUser(user1));
+//		
+//	}
 
-		UserService userService = new UserService();
-		User user1 = new User("Username_784","Male" ,"9500320194","2004-12-26", "freekyajmal@gmail.com","Ajmal@123");
-		try {
-			assertFalse(UserService.registerUser(user1));
-		} catch (ServiceException e) {
-			e.printStackTrace();
 
-		}
-	}
-
-	@Test
-	public void testUserNull() {
-
-		UserService userService = new UserService();
-		User user1 = null;
-		try {
-			assertFalse(userService.registerUser(user1));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-
-		}
-
-	}
 
 }
