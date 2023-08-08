@@ -2,74 +2,96 @@ package freshBYE.model;
 
 public class User {
 
-	private int UUID;
-	private String UserName;
-	private String Mobile;
-	private String profile;
-	public String Email;
-	public String password;
+	private int userId;
+	private String username;
+	private String gender;
+	private String mobileNumber;
+	private String dateOfBirth;
+	String email;
+	String password;
 	
-	public User(String UserName , String Mobile , String profile, String Email, String password) {
+	//register
+	public User(String username, String gender , String mobileNumber , String dateOfBirth, String email, String password) {
 		super();
-		this.UUID = UUID;
-		this.UserName = UserName;
-		this.Mobile = Mobile;
-		this.profile = profile;
-		this.Email = Email;
+		this.username = username;
+		this.gender = gender;
+		this.mobileNumber = mobileNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.email = email;
 		this.password = password;
 	}
 	
+	//update
+	public User(String gender, String mobileNumber , String dateOfBirth) {
+		super();
+		this.gender = gender;
+		this.mobileNumber = mobileNumber;
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	//delete
+		public User(int userId) {
+			super();
+			this.userId = userId;
+		}
+	
+	//login
 	public User(String email, String password) {
 		super();
-		this.Email = email;
+		this.email = email;
 		this.password = password;
 	}
 	
 	public String toString() {
-		return "UserID: " + UUID + "username: " + UserName + "mobile_number: " + Mobile + "profileURL: " + profile + "Email: " + Email + " Password: " + password;
+		return "UserID: " + userId + "username: " + username + "gender: " + gender + "mobile_number: " + mobileNumber + "date_of_birth: " + dateOfBirth + "Email: " + email + " Password: " + password;
 	}
 
-	public int getUUID() {
-		return UUID;
+	public int getUserID() {
+		return userId;
 	}
 
-	public void setUUID(int userID) {
-		this.UUID = userID;
+	public void setUserID(int userId) {
+		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return UserName;
+	public String getUsername() {
+		return username;
 	}
 
 	public void setUsername(String username) {
-		this.UserName = username;
+		this.username = username;
 	}
 
-
-	
-
-	public String getMobile_number() {
-		return Mobile;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setMobile_number(String mobile_number) {
-		this.Mobile = mobile_number;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
-	public String getProfile() {
-		return profile;
+	public String getmobileNumber() {
+		return mobileNumber;
 	}
 
-	public void setProfile(String date_of_birth) {
-		this.profile = date_of_birth;
+	public void setmobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getdateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setdateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		this.Email = email;
+		this.email = email;
 	}
 
 	public String getPassword() {

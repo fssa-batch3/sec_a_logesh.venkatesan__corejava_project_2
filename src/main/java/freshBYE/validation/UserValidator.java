@@ -1,17 +1,16 @@
 package freshBYE.validation;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
 import freshBYE.model.User;
 import freshBYE.validation.exception.InvalidUserException;
+
+import java.util.regex.PatternSyntaxException;
 
 public class UserValidator {
 	
 	// if three conditions valid then user valid
-	public static boolean ValidateUser(User user) throws InvalidUserException {
-		if(user != null && validateName(user.getUserName()) && validateEmail(user.getEmail()) 
+	public static boolean validateUser(User user) throws InvalidUserException {
+		if(user != null && validateName(user.getUsername()) && validateEmail(user.getEmail()) 
 				&& validatePassword(user.getPassword())) {
 			return true;
 		} else {
@@ -35,12 +34,61 @@ public class UserValidator {
 		}
 		return match;
 	}
+	
+			
+	public static boolean validateMobileNumber(String mobileNumber) {
+		boolean match = false;
+		try {
+			String regex = "^\\+?[0-9]{1,4}-?[0-9]{5,14}$";
+			match = Pattern.matches(regex, mobileNumber);
+			if (match) {
+				System.out.println("Given mobileNumber is valid.");
+			} else {
+				System.out.println("Given mobileNumber is not valid");
+			}
+		} catch (Exception e) {
+			System.out.println("mobileNumber is not valid");
+		}
+		return match;
+	}
+	
+	public static boolean validateDateOfBirth(String DateOfBirth) {
+		boolean match = false;
+		try {
+			String regex = "^(?:19|20)\\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[1-2]\\d|3[0-1])$";
+			match = Pattern.matches(regex, DateOfBirth);
+			if (match) {
+				System.out.println("Given DateOfBirth is valid.");
+			} else {
+				System.out.println("Given DateOfBirth is not valid");
+			}
+		} catch (Exception e) {
+			System.out.println("DateOfBirth is not valid");
+		}
+		return match;
+	}
+
+	    public static boolean validateGender(String gender) {
+	        boolean match = false;
+	        try {
+	            String regex = "^(male|female|others)$";
+	            match = Pattern.matches(regex, gender.toLowerCase());
+	            if (match) {
+	                System.out.println("Given Gender is valid.");
+	            } else {
+	                System.out.println("Given Gender is not valid. Expected Input : male|female|others");
+	            }
+	        } catch (Exception e) {
+	            System.out.println("Gender is not valid. Expected Input : male|female|others");
+	        }
+	        return match;
+	    }
 
 	public static boolean validatePassword(String password) {
 		boolean match = false;
 		try {
-			String pattern_string = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
-			match = Pattern.matches(pattern_string, password);
+			String patternString = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
+			match = Pattern.matches(patternString, password);
 			if (match) {
 				System.out.println("Valid password.");
 			} else {

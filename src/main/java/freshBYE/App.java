@@ -1,14 +1,9 @@
 package freshBYE;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import freshBYE.model.*;
 
 public class App {
 	
-
-
+	public static void main(String[] args) {
+		System.out.println("வணக்கம் FreshBYE உங்களை அன்போடு வரவேட்குது...");
+	}
 }

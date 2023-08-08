@@ -1,17 +1,18 @@
 package freshBYE.services.exception;
 
-public class serviceException extends Exception {
+
+public class ServiceException extends Exception {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -915118433667030428L;
 
-	public serviceException(String msg) {
+	public ServiceException(String msg) {
 		super(msg);
 	}
 	
-	public serviceException(Throwable msg) {
+	public ServiceException(Throwable msg) {
 		super(msg);
 	}
 }
