@@ -98,11 +98,11 @@ public class UserDAO {
 	
 	
 	public boolean delete(String email) throws SQLException {
-	    int is_delete = 1;
+	    int isDelete = 1;
 	    String selectQuery = "UPDATE userdata SET is_deleted = ? WHERE user_mail = ?";
 	    try (Connection connection = Utils.getConnection();
 	         PreparedStatement pst = connection.prepareStatement(selectQuery)) {
-	        pst.setInt(1, is_delete);
+	        pst.setInt(1, isDelete);
 	        pst.setString(2, email);
 	        int rows = pst.executeUpdate();
 	        return (rows == 1);
