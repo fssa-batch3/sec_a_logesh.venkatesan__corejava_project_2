@@ -32,10 +32,12 @@ public class UserDAO {
 				rs = ps.executeQuery();
 				
 				if(rs.next() == false) {
+					System.out.println("1");
 					throw new DAOException("Invalid Login Credentials");
 				}
 				else{
 					if(!rs.getString("user_pwd").equals(password)) {
+						System.out.println("2");
 						throw new DAOException("Invalid Login Credentials");
 					}
 				}
@@ -114,7 +116,7 @@ public class UserDAO {
 			int rows = pst.executeUpdate();
 			
 			//Return Successful or not
-			return (rows == 1);
+			return (rows == 1); 
 }
 	
 	//delete user

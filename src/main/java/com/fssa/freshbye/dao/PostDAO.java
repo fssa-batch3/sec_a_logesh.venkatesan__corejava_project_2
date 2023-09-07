@@ -24,7 +24,7 @@ public class PostDAO {
             ps.setString(2, post.getTitle());
             ps.setString(3, post.getDescription());
             ps.setInt(4, post.getUserId());
-            
+             
              
             int rows = ps.executeUpdate();
 
@@ -43,14 +43,14 @@ public class PostDAO {
         try (Connection connection = Utils.getConnection(); PreparedStatement ps = connection.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                String name = rs.getString("user_name");
-                String email = rs.getString("user_mail");
-                String phno = rs.getString("mobileno");
+         rs.getString("user_name");
+               rs.getString("user_mail");
+              rs.getString("mobileno");
 
                 String postImage = rs.getString("image_url");
                 String title = rs.getString("title");
-                String description = rs.getString("story");
-                int userid = rs.getInt("user_id");
+                String description = rs.getString("story"); 
+            rs.getInt("user_id");
 
                 // You need to create and set user information here
                 Post post = new Post(postImage, title, description);
@@ -65,16 +65,15 @@ public class PostDAO {
     }
 
     // Update method
-    public boolean updatePost(Post post) throws DAOException {
+    public boolean updatePost(int id, Post post) throws DAOException {
         try {
-            String query = "UPDATE Postdetails SET image_url = ?, title = ?, story = ? WHERE post_id = ?";
+            String query = "UPDATE Postdetails SET title = ?, story = ? WHERE post_id = ?";
 
             try (PreparedStatement ps = Utils.getConnection().prepareStatement(query)) {
 
-                ps.setString(1, post.getPostImage());
-                ps.setString(2, post.getTitle());
-                ps.setString(3, post.getDescription());
-                ps.setInt(4, post.getId());
+                ps.setString(1, post.getTitle());
+                ps.setString(2, post.getDescription());
+                ps.setInt(3, id);
 
                 int rows = ps.executeUpdate();
                 return (rows == 1);

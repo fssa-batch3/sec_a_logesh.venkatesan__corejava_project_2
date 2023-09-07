@@ -20,13 +20,13 @@ class TestPostCreateFeature {
 		User user = new User();
 		Post post = new Post();
 		user.setUsername("Logesh");
-	
+	 
 
 		
 		post.setPostImage(
 				"https://img.freepik.com/free-photo/beauty-portrait-ginger-woman-with-flower-hair-sitting-by-mirror-table-with-bottle-lotion-while-looking-away_171337-1068.jpg?size=626&ext=jpg&ga=GA1.2.1319163761.1690984074&semt=ais");
 		post.setTitle("I am new to freshbye");
-		post.setDescription("I am Nervous now");
+		post.setDescription("I am Listening");
 		post.setUserId(5);
 		PostService postservice = new PostService();
 		try {

@@ -7,7 +7,7 @@ public class Post {
     private String description;
     private int userId;
 
-    
+     
 
     // Constructor for view data
     public Post(String postImage, String title, String description) {

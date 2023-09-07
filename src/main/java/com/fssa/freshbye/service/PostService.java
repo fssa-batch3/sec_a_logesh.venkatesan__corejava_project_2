@@ -20,7 +20,7 @@ public class PostService {
 		try { 
 			PostValidation.validatePost(post);
             return postDAO.createPost(post);
-		} catch (DAOException e) {
+		} catch (DAOException e) { 
 			throw new ServiceException(e.getMessage(), e);
 		}
 
@@ -40,14 +40,14 @@ public class PostService {
 
 //	Update post feature Service
 
-	public boolean updatePost(Post post) throws ServiceException {
+	public boolean updatePost(int id, Post post) throws ServiceException {
 
 		PostDAO postDAO = new PostDAO();
 
-		try {
-			//PostValidation.validateTitle(post);
+		try { 
+//			PostValidation.validateTitle(post);
 
-			if (postDAO.createPost(post)) {
+			if (postDAO.updatePost(id, post)) {
 				System.out.println("Update Post for post was successfull");
 				return true;
 			} else {

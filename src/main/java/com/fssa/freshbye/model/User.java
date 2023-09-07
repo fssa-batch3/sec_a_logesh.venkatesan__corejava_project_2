@@ -11,7 +11,12 @@ public class User {
 	private boolean is_active;
 	
  
-	public User() {
+	public void setIs_active(boolean is_active) {
+		this.is_active = is_active;
+	}
+
+
+	public User() { 
 	};
 
 	 
@@ -54,7 +59,7 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+ 
 	public String getPassword() {
 		return password;
 	}
@@ -75,10 +80,6 @@ public class User {
 		return is_active;
 	}
 
-
-	public void setIs_active(boolean is_active) {
-		this.is_active = is_active;
-	}
 
 
 	@Override
