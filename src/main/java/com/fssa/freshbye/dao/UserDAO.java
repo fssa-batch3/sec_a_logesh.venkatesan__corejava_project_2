@@ -41,76 +41,70 @@ public class UserDAO {
 	}
 
    
-   public boolean EmailExist(User user) throws SQLException {
-		
-	   
-	   Connection connection = Utils.getConnection();
-	   
-	   String selectQuery = "SELECT * FROM userdata WHERE user_mail = ?";
-	   PreparedStatement pst = connection.prepareStatement(selectQuery);
-	   pst.setString(1, user.getMail());
-	   ResultSet resultSet = pst.executeQuery();
-	   
-	   while (resultSet.next()) {
-		   String emailID = resultSet.getString("user_mail");
-		   String Password = resultSet.getString("user_pwd");
-		   
-		   System.out.println("Email: " + emailID + " Password: " + Password);
-		   
-		   if(user.getMail().equals(emailID)) {
-			   match = true;
-		   }
-	   }
-	   return match;
+	public boolean EmailExist(User user) throws SQLException {
+	    boolean match = false;
+	    String selectQuery = "SELECT * FROM userdata WHERE user_mail = ?";
+	    try (Connection connection = Utils.getConnection();
+	         PreparedStatement pst = connection.prepareStatement(selectQuery)) {
+	        pst.setString(1, user.getMail());
+	        try (ResultSet resultSet = pst.executeQuery()) {
+	            while (resultSet.next()) {
+	                String emailID = resultSet.getString("user_mail");
+	                String Password = resultSet.getString("user_pwd");
+
+	                System.out.println("Email: " + emailID + " Password: " + Password);
+
+	                if (user.getMail().equals(emailID)) {
+	                    match = true;
+	                }
+	            }
+	        }
+	    }
+	    return match;
 	}
+
    
    
 	public boolean register(User user) throws SQLException {
-	
-		Connection connection = Utils.getConnection();
-		
-		String insertQuery = "INSERT INTO userdata (user_name,user_mail,mobileno,user_pwd) VALUES (?,?,?,?);";
-		PreparedStatement pst = connection.prepareStatement(insertQuery);
-
-		pst.setString(1, user.getUsername());
-		pst.setString(2, user.getMail());
-		pst.setString(3,user.getMobileno());
-		pst.setString(4, user.getPassword());
-		int rows = pst.executeUpdate();
-		return (rows == 1);
+	    String insertQuery = "INSERT INTO userdata (user_name,user_mail,mobileno,user_pwd) VALUES (?,?,?,?);";
+	    try (Connection connection = Utils.getConnection();
+	         PreparedStatement pst = connection.prepareStatement(insertQuery)) {
+	        pst.setString(1, user.getUsername());
+	        pst.setString(2, user.getMail());
+	        pst.setString(3, user.getMobileno());
+	        pst.setString(4, user.getPassword());
+	        int rows = pst.executeUpdate();
+	        return (rows == 1);
+	    }
 	}
-	
+
 	
 	
 	public boolean Update(User user , String email) throws SQLException {
-		   
-		   Connection connection = Utils.getConnection();
-		   
-		   String selectQuery = "UPDATE userdata SET  user_name = ?,mobileno = ?,user_pwd = ? WHERE user_mail = ?;";
-		   PreparedStatement pst = connection.prepareStatement(selectQuery);
-		  
-		   pst.setString(1, user.getUsername());
-			pst.setString(2,user.getMobileno());
-			pst.setString(3, user.getPassword());
-			pst.setString(4, user.getMail());
-		   
-			int rows = pst.executeUpdate();
-			return (rows == 1); 
-}
+	    String selectQuery = "UPDATE userdata SET  user_name = ?,mobileno = ?,user_pwd = ? WHERE user_mail = ?;";
+	    try (Connection connection = Utils.getConnection();
+	         PreparedStatement pst = connection.prepareStatement(selectQuery)) {
+	        pst.setString(1, user.getUsername());
+	        pst.setString(2,user.getMobileno());
+	        pst.setString(3, user.getPassword());
+	        pst.setString(4, user.getMail());
+	        int rows = pst.executeUpdate();
+	        return (rows == 1);
+	    }
+	}
+
 	
 	
 	
 	public boolean Delete(User user1 , String email) throws SQLException {
-		   
-		   Connection connection = Utils.getConnection();
-		   
-		   int is_delete = 1;
-		   
-		   String selectQuery = "UPDATE userdata SET is_deleted = ? WHERE user_mail = " + email + ";";
-		   PreparedStatement pst = connection.prepareStatement(selectQuery);
-		   pst.setInt(1, is_delete);
-			int rows = pst.executeUpdate();
-			return (rows == 1);
-}
-	
+	    int is_delete = 1;
+	    String selectQuery = "UPDATE userdata SET is_deleted = ? WHERE user_mail = ?";
+	    try (Connection connection = Utils.getConnection();
+	         PreparedStatement pst = connection.prepareStatement(selectQuery)) {
+	        pst.setInt(1, is_delete);
+	        pst.setString(2, email);
+	        int rows = pst.executeUpdate();
+	        return (rows == 1);
+	    }
+	}
 }
