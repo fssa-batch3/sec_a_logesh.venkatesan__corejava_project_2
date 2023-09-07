@@ -17,41 +17,29 @@ public class UserDAO {
 /*	
  * Get user from DB - Login
  * */
-   public boolean login(String email, String password) throws DAOException, SQLException {
-		
-	 
-			Connection con = Utils.getConnection();
-			PreparedStatement ps = null;
-			ResultSet rs = null;
-			try {
-				String query = "SELECT user_pwd FROM userdata WHERE user_mail = ?";
-				con = Utils.getConnection();
-				ps = con.prepareStatement(query);
-				ps.setString(1, email);
-				rs = ps.executeQuery();
-				
-				if(rs.next() == false) {
-					System.out.println("1");
-					throw new DAOException("Invalid Login Credentials");
-				}
-				else{
-					if(!rs.getString("user_pwd").equals(password)) {
-						System.out.println("2");
-						throw new DAOException("Invalid Login Credentials");
-					}
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DAOException(e.getMessage());
-			} finally {
-				rs.close();
-				ps.close();
-				con.close();
+	public boolean login(String email, String password) throws DAOException, SQLException {
+	    String query = "SELECT user_pwd FROM userdata WHERE user_mail = ?";
+	    try (Connection con = Utils.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setString(1, email);
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (!rs.next()) {
+	                System.out.println("1");
+	                throw new DAOException("Invalid Login Credentials");
+	            } else {
+	                if (!rs.getString("user_pwd").equals(password)) {
+	                    System.out.println("2");
+	                    throw new DAOException("Invalid Login Credentials");
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new DAOException(e.getMessage());
+	    }
+	    return true;
+	}
 
-			}
-			return true;
-		}
    
    public boolean EmailExist(User user) throws SQLException {
 		

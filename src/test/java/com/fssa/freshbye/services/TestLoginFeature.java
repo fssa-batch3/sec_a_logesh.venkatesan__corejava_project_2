@@ -13,8 +13,8 @@ import com.fssa.freshbye.service.exception.ServiceException;
 	 void loginSuccess() {
 		UserService userService = new UserService();
 
-		String email = "venkatesan@gmail.com";
-		String password = "Venky@1234";
+		String email = "gopu@gmail.com";
+		String password = "Wow@2002";
 		try { 
 			 
 			assertTrue(userService.LoginUser(email, password));
