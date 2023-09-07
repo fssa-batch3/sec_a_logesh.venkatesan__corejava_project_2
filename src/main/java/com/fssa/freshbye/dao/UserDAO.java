@@ -42,8 +42,8 @@ public class UserDAO {
 	}
 
    
-	public boolean EmailExist(User user) throws SQLException {
-	    boolean match = false;
+	public boolean emailExist(User user) throws SQLException {
+	    boolean is_match = false;
 	    String selectQuery = "SELECT * FROM userdata WHERE user_mail = ?";
 	    try (Connection connection = Utils.getConnection();
 	         PreparedStatement pst = connection.prepareStatement(selectQuery)) {
@@ -51,17 +51,17 @@ public class UserDAO {
 	        try (ResultSet resultSet = pst.executeQuery()) {
 	            while (resultSet.next()) {
 	                String emailID = resultSet.getString("user_mail");
-	                String Password = resultSet.getString("user_pwd");
+	                String password  = resultSet.getString("user_pwd");
 
-	             logger.debug("Email: " + emailID + " Password: " + Password);
+	             logger.debug("Email: " + emailID + " Password: " + password );
 
 	                if (user.getMail().equals(emailID)) {
-	                    match = true;
+	                	is_match = true;
 	                }
 	            }
 	        }
 	    }
-	    return match;
+	    return is_match;
 	}
 
    
@@ -81,7 +81,7 @@ public class UserDAO {
 
 	
 	
-	public boolean Update(User user , String email) throws SQLException {
+	public boolean update(User user ) throws SQLException {
 	    String selectQuery = "UPDATE userdata SET  user_name = ?,mobileno = ?,user_pwd = ? WHERE user_mail = ?;";
 	    try (Connection connection = Utils.getConnection();
 	         PreparedStatement pst = connection.prepareStatement(selectQuery)) {
@@ -97,7 +97,7 @@ public class UserDAO {
 	
 	
 	
-	public boolean Delete(User user1 , String email) throws SQLException {
+	public boolean delete(String email) throws SQLException {
 	    int is_delete = 1;
 	    String selectQuery = "UPDATE userdata SET is_deleted = ? WHERE user_mail = ?";
 	    try (Connection connection = Utils.getConnection();
@@ -108,4 +108,7 @@ public class UserDAO {
 	        return (rows == 1);
 	    }
 	}
+
+
+	
 }

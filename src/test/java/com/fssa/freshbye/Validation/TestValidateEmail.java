@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.fssa.freshbye.validation.UserValidator;
 import com.fssa.freshbye.validation.exceptions.InvalidUserException;
 
-public class TestValidateEmail {
+class TestValidateEmail {
 	 Logger logger = new Logger();
 	
 	@Test

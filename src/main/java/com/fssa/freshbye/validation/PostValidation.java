@@ -12,7 +12,7 @@ public class PostValidation {
 	 static Logger logger = new Logger();
 
 
-	public static <Sting> boolean validateDescription(Sting cost) throws InvalidPostException {
+	public static boolean validateDescription(String cost) throws InvalidPostException {
 		boolean match = false;
 
 		String regex = "^[\\s\\S]*$";

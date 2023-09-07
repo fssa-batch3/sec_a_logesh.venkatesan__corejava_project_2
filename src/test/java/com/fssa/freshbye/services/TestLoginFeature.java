@@ -18,7 +18,7 @@ import com.fssa.freshbye.utils.Logger;
 		String password = "Ramu@1234";
 		try { 
 			 
-			assertTrue(userService.LoginUser(email, password));
+			assertTrue(userService.loginUser(email, password));
 			throw new ServiceException("Login successfully. Welcome, " + email + "!");
 		} catch (ServiceException e) {
   
@@ -32,7 +32,7 @@ import com.fssa.freshbye.utils.Logger;
 		String email = "gopikan2906@gmail.com";
 		String password = "Wow@2002";
 		try {
-			assertFalse(userService.LoginUser(email, password));
+			assertFalse(userService.loginUser(email, password));
 			throw new ServiceException("Login Failed.Kindly Register");
 		} catch (ServiceException e) {
 			logger.debug(e.getMessage());

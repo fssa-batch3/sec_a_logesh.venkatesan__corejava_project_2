@@ -21,7 +21,7 @@ class TestUpdateUserFeature {
 		User user1 = new User("ramu@gmail.com", "Raamu", "Raamu@1234", "8270853318");
 
 		try {
-			assertTrue(userservice.UpdateUser(user1, "ramu@gmail.com"));
+			assertTrue(userservice.updateUser(user1));
 		} catch (ServiceException e) {
 
 			logger.debug(e.getMessage());
@@ -42,7 +42,7 @@ class TestUpdateUserFeature {
 		User user1 = new User("vivky@2002", "VickyKannan", "Kon@2002", "9028848999");
 
 		try {
-			assertFalse(userservice.UpdateUser(user1, "gopikannan@gmail.com"));
+			assertFalse(userservice.updateUser(user1));
 		} catch (ServiceException e) {
 
 			logger.debug(e);

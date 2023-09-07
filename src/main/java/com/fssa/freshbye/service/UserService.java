@@ -19,7 +19,7 @@ public class UserService {
 		User user1 = new User(user.getMail(), user.getPassword());
 
 		try {
-			if (UserValidator.validateUser(user) && !userDAO.EmailExist(user1)) {
+			if (UserValidator.validateUser(user) && !userDAO.emailExist(user1)) {
 				if (userDAO.register(user)) {
 					logger.debug(user.getUsername() + " Successfully Registered! Welcome to freshBye");
 					return true;
@@ -35,10 +35,10 @@ public class UserService {
 	}
 
 	// update user
-	public boolean UpdateUser(User user, String email) throws ServiceException {
+	public boolean updateUser(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
-			if (userDAO.Update(user, email)) {
+			if (userDAO.update(user)) {
 				logger.debug("User Details Successfully Updated!");
 				return true;
 			} else {
@@ -50,10 +50,10 @@ public class UserService {
 	}
 
 	// delete user
-	public boolean DeleteUser(User user, String email) throws ServiceException {
+	public boolean deleteUser(String email) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
-			if (userDAO.Delete(user, email)) {
+			if (userDAO.delete(email)) {
 				logger.debug("User Details Successfully Deleted!");
 				return true;
 			} else {
@@ -64,7 +64,7 @@ public class UserService {
 		}
 	}
 
-	public boolean LoginUser(String email, String password) throws ServiceException {
+	public boolean loginUser(String email, String password) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		try {
 			if (userDAO.login(email, password)) {

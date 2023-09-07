@@ -8,16 +8,15 @@ public class User {
 	private String username;
 	private String password;
 	private String mobileno;
-	private boolean is_active;
+	private boolean isActive;
 	
  
-	public void setIs_active(boolean is_active) {
-		this.is_active = is_active;
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 
-	public User() { 
-	};
+	
 
 	 
 	public User(String mail, String username, String password, String mobileno) {
@@ -34,6 +33,14 @@ public class User {
 	}
 
 	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -76,8 +83,8 @@ public class User {
 		this.mobileno = mobileno;
 	}
 
-	public boolean getIs_active() {
-		return is_active;
+	public boolean getIsActive() {
+		return isActive;
 	}
 
 
@@ -85,7 +92,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", mail=" + mail + ", username=" + username + ", password=" + password + ", mobileno="
-				+ mobileno + ", is_active=" + is_active + "]";
+				+ mobileno + ", is_active=" + isActive + "]";
 	}
 
 	

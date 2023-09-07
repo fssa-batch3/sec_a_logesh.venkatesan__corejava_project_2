@@ -32,7 +32,7 @@ import com.fssa.freshbye.validation.exceptions.InvalidUserException;
 	}
 
 	@Test
-	public void testInvalidUsernameStartingWithSpecialCharacter() {
+ void testInvalidUsernameStartingWithSpecialCharacter() {
 		try {
 
 			assertFalse(UserValidator.validateName("@soffan"));
