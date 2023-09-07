@@ -6,11 +6,14 @@ import com.fssa.freshbye.dao.UserDAO;
 import com.fssa.freshbye.dao.exceptions.DAOException;
 import com.fssa.freshbye.model.User;
 import com.fssa.freshbye.service.exception.ServiceException;
+import com.fssa.freshbye.utils.Logger;
 import com.fssa.freshbye.validation.UserValidator;
 import com.fssa.freshbye.validation.exceptions.*;
 
 public class UserService {
 
+	 Logger logger = new Logger();
+	 
 	public boolean registerUser(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		User user1 = new User(user.getMail(), user.getPassword());
@@ -18,7 +21,7 @@ public class UserService {
 		try {
 			if (UserValidator.validateUser(user) && !userDAO.EmailExist(user1)) {
 				if (userDAO.register(user)) {
-					System.out.println(user.getUsername() + " Successfully Registered! Welcome to freshBye");
+					logger.debug(user.getUsername() + " Successfully Registered! Welcome to freshBye");
 					return true;
 				} else {
 					return false;
@@ -36,7 +39,7 @@ public class UserService {
 		UserDAO userDAO = new UserDAO();
 		try {
 			if (userDAO.Update(user, email)) {
-				System.out.println("User Details Successfully Updated!");
+				logger.debug("User Details Successfully Updated!");
 				return true;
 			} else {
 				return false;
@@ -51,7 +54,7 @@ public class UserService {
 		UserDAO userDAO = new UserDAO();
 		try {
 			if (userDAO.Delete(user, email)) {
-				System.out.println("User Details Successfully Deleted!");
+				logger.debug("User Details Successfully Deleted!");
 				return true;
 			} else {
 				return false;
@@ -65,10 +68,10 @@ public class UserService {
 		UserDAO userDAO = new UserDAO();
 		try {
 			if (userDAO.login(email, password)) {
-				System.out.println("\n" + email + " Login Successful!");
+				logger.debug("\n" + email + " Login Successful!");
 				return true;
 			} else {
-				System.out.println("\n" + " Login Not Successful! ReCheck Your Credentials");
+				logger.debug("\n" + " Login Not Successful! ReCheck Your Credentials");
 				return false;
 			}
 		} catch (SQLException | DAOException e) {

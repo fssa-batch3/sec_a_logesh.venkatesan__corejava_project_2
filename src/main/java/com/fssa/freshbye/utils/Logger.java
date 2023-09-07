@@ -5,6 +5,6 @@ public void error(Exception e) {
 	e.printStackTrace();
 }
 public void debug(Object e) {
-	System.out.print(e);
+	System.out.println(e);
 }
 }

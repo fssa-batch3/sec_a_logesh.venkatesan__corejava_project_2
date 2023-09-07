@@ -6,22 +6,23 @@ import org.junit.jupiter.api.Test;
 
 import com.fssa.freshbye.service.*;
 import com.fssa.freshbye.service.exception.ServiceException;
+import com.fssa.freshbye.utils.Logger;
 
  class TestLoginFeature {
- 
+ Logger logger = new Logger();
 	@Test
 	 void loginSuccess() {
 		UserService userService = new UserService();
 
-		String email = "gopu@gmail.com";
-		String password = "Wow@2002";
+		String email = "ramu@gmail.com";
+		String password = "Ramu@1234";
 		try { 
 			 
 			assertTrue(userService.LoginUser(email, password));
 			throw new ServiceException("Login successfully. Welcome, " + email + "!");
 		} catch (ServiceException e) {
- 
-			System.out.println(e.getMessage());
+  
+			logger.debug(e.getMessage());
 		}
 	}   
  
@@ -34,7 +35,7 @@ import com.fssa.freshbye.service.exception.ServiceException;
 			assertFalse(userService.LoginUser(email, password));
 			throw new ServiceException("Login Failed.Kindly Register");
 		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
+			logger.debug(e.getMessage());
 		}
 	} 
 }

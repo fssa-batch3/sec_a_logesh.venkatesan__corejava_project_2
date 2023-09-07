@@ -1,15 +1,17 @@
 package com.fssa.freshbye.services;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import com.fssa.freshbye.utils.Logger;
 import org.junit.jupiter.api.Test;
-
 import com.fssa.freshbye.service.PostService;
 import com.fssa.freshbye.service.exception.ServiceException;
-import com.fssa.freshbye.model.*;
+
+
+
 class TestPostDeleteFeature {
+	 Logger logger = new Logger();	
+	
 	@Test
 
 	void deletePostSuccess() {
@@ -17,12 +19,12 @@ class TestPostDeleteFeature {
 		PostService postservice = new PostService();
 		try {
 
-			int postId = 7;
+			int postId = 16;
 
 			assertTrue(postservice.deletePost(postId));
 		} catch (ServiceException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+			logger.error(e);	
+			logger.debug(e.getMessage());
 		}
  
 	}
@@ -34,7 +36,7 @@ class TestPostDeleteFeature {
 		try {
 			assertFalse(postservice.deletePost(-1));
 		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
+			logger.debug(e.getMessage());
 		}
 
 	}

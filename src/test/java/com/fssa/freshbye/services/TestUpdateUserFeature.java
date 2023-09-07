@@ -1,33 +1,33 @@
 package com.fssa.freshbye.services;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import com.fssa.freshbye.utils.Logger;
 import org.junit.jupiter.api.Test;
-
 import com.fssa.freshbye.model.User;
 import com.fssa.freshbye.service.UserService;
 import com.fssa.freshbye.service.exception.ServiceException;
 
 class TestUpdateUserFeature {
+	Logger logger = new Logger();
 
-/*
- * Success test case for update features
- */ 
+	/*
+	 * Success test case for update features
+	 */
 	@Test
 	void testUpdateSuccess() {
 
 		UserService userservice = new UserService();
 
-		User user1 = new User("Vinittechcouch@gmail.com", "IamVinit", "Panels@1", "8270853318");
+		User user1 = new User("ramu@gmail.com", "Raamu", "Raamu@1234", "8270853318");
 
 		try {
-			assertTrue(userservice.UpdateUser(user1, "gopikannan@gmail.com"));
+			assertTrue(userservice.UpdateUser(user1, "ramu@gmail.com"));
 		} catch (ServiceException e) {
 
-			System.out.println(e.getMessage());
+			logger.debug(e.getMessage());
 
 		}
-		
+
 	}
 
 	/*
@@ -45,7 +45,7 @@ class TestUpdateUserFeature {
 			assertFalse(userservice.UpdateUser(user1, "gopikannan@gmail.com"));
 		} catch (ServiceException e) {
 
-			System.out.println(e);
+			logger.debug(e);
 
 		}
 

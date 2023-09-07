@@ -1,6 +1,7 @@
 package com.fssa.freshbye.services;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import com.fssa.freshbye.utils.Logger;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import com.fssa.freshbye.validation.exceptions.InvalidPostException;
 import com.fssa.freshbye.validation.exceptions.InvalidUserException;
 
 class TestPostViewFeature {
-	
+	 Logger logger = new Logger();
 	/*
 	 * Its used to list the posts which is post by users 
 	 */
@@ -34,13 +35,13 @@ class TestPostViewFeature {
 			assertNotNull(posts);
 
 			for (Post p : posts) {
-				System.out.println(p.toString());
+				logger.debug(p.toString());
 			}
 
 			System.out.println("Successfully Viewed");
 		} catch (ServiceException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+			logger.error(e);	
+			logger.debug(e.getMessage());
 		}
 	}
 
@@ -54,7 +55,7 @@ class TestPostViewFeature {
 			assertFalse(posts.isEmpty());
 
 		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
+			logger.debug(e.getMessage());
 		}
 	}
 

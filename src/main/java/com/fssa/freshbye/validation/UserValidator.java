@@ -2,13 +2,16 @@
 package com.fssa.freshbye.validation;
 
 import java.util.regex.Matcher;
+import com.fssa.freshbye.utils.Logger;
 import java.util.regex.Pattern;
 
 import com.fssa.freshbye.model.User;
 import com.fssa.freshbye.validation.exceptions.InvalidIdException;
 import com.fssa.freshbye.validation.exceptions.InvalidUserException;
 
-public class UserValidator{
+public class UserValidator {
+	static Logger logger = new Logger();
+
 	public static boolean validateUser(User user) throws InvalidUserException {
 
 //		User is Valid if username is valid and email is valid and pwd is valid
@@ -48,7 +51,7 @@ public class UserValidator{
 		match = m.matches();
 		if (match) {
 
-			System.out.println("The user name is valid.");
+			logger.debug("The user name is valid.");
 		} else {
 			throw new InvalidUserException("The user name is not valid");
 
@@ -74,7 +77,7 @@ public class UserValidator{
 
 		if (match) {
 
-			System.out.println("Valid password.");
+			logger.debug("Valid password.");
 		} else {
 			throw new InvalidUserException("Invalid password.");
 
@@ -97,7 +100,7 @@ public class UserValidator{
 
 		isMatch = Pattern.matches(regex, email);
 		if (isMatch) {
-			System.out.println("The email address is: Valid");
+			logger.debug("The email address is: Valid");
 		} else {
 			throw new InvalidUserException("The email address is: Invalid");
 
@@ -120,7 +123,7 @@ public class UserValidator{
 
 		isMatch = Pattern.matches(regex, mobileno);
 		if (isMatch) {
-			System.out.println("The mobile number is: Valid");
+			logger.debug("The mobile number is: Valid");
 		} else {
 			throw new InvalidUserException("The mobile number is: Invalid");
 

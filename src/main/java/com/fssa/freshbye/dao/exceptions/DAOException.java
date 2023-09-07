@@ -1,6 +1,7 @@
 package com.fssa.freshbye.dao.exceptions;
 
 public class DAOException extends Exception {
+	
 
 	/**
 	 * 

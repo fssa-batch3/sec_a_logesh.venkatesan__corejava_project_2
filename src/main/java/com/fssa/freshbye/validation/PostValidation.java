@@ -1,15 +1,15 @@
 package com.fssa.freshbye.validation;
 
 import java.util.regex.Matcher;
+import com.fssa.freshbye.utils.Logger;
 import java.util.regex.Pattern;
 
 import com.fssa.freshbye.model.Post;
-import com.fssa.freshbye.model.User;
 import com.fssa.freshbye.validation.exceptions.InvalidPostException;
 import com.fssa.freshbye.validation.exceptions.InvalidUserException;
 
 public class PostValidation {
-
+	 static Logger logger = new Logger();
 
 
 	public static <Sting> boolean validateDescription(Sting cost) throws InvalidPostException {
@@ -21,7 +21,7 @@ public class PostValidation {
 		match = m.matches();
 
 		if (match) {
-			System.out.println("The Description is valid.");
+			logger.debug("The Description is valid.");
 			return true;
 		} else {
 			throw new InvalidPostException("The Description is valid");
@@ -34,7 +34,7 @@ public class PostValidation {
 		String regex = "^(https?|ftp)://.*$";
 		match = Pattern.matches(regex, imageUrl);
 		if (match) {
-			System.out.println("The Post Image URL is valid.");
+			logger.debug("The Post Image URL is valid.");
 		} else {
 			throw new InvalidPostException("The Post image URL is not valid.");
 		}
@@ -45,10 +45,10 @@ public class PostValidation {
 	
 
 	public static boolean validateTitle(String validStory) throws InvalidPostException {
-		int maxLength = 100;
+	
 
 		if (validStory != null) {
-			System.out.println("The title is valid.");
+			logger.debug("The title is valid.");
 			return true;
 		} else {
 			throw new InvalidPostException("The title must not be more than 100 characters.");

@@ -8,10 +8,11 @@ import java.sql.SQLException;
 
 import com.fssa.freshbye.dao.exceptions.DAOException;
 import com.fssa.freshbye.model.User;
+import com.fssa.freshbye.utils.Logger;
 import com.fssa.freshbye.utils.Utils;
 
 public class UserDAO {
-
+	 Logger logger = new Logger();
 
 	boolean match = false;
 /*	
@@ -24,17 +25,17 @@ public class UserDAO {
 	        ps.setString(1, email);
 	        try (ResultSet rs = ps.executeQuery()) {
 	            if (!rs.next()) {
-	                System.out.println("1");
+	                logger.debug("1");
 	                throw new DAOException("Invalid Login Credentials");
 	            } else {
 	                if (!rs.getString("user_pwd").equals(password)) {
-	                    System.out.println("2");
+	                	 logger.debug("2");
 	                    throw new DAOException("Invalid Login Credentials");
 	                }
 	            }
 	        }
 	    } catch (SQLException e) {
-	        e.printStackTrace();
+	       logger.error(e);
 	        throw new DAOException(e.getMessage());
 	    }
 	    return true;
@@ -52,7 +53,7 @@ public class UserDAO {
 	                String emailID = resultSet.getString("user_mail");
 	                String Password = resultSet.getString("user_pwd");
 
-	                System.out.println("Email: " + emailID + " Password: " + Password);
+	             logger.debug("Email: " + emailID + " Password: " + Password);
 
 	                if (user.getMail().equals(emailID)) {
 	                    match = true;

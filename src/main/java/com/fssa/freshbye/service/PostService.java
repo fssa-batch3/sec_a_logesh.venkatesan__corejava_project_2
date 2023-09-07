@@ -6,13 +6,14 @@ import com.fssa.freshbye.dao.PostDAO;
 import com.fssa.freshbye.dao.exceptions.DAOException;
 import com.fssa.freshbye.model.Post;
 import com.fssa.freshbye.service.exception.ServiceException;
+import com.fssa.freshbye.utils.Logger;
 import com.fssa.freshbye.validation.PostValidation;
 import com.fssa.freshbye.validation.exceptions.InvalidPostException;
 import com.fssa.freshbye.validation.exceptions.InvalidUserException;
 
 public class PostService {
-//	post createService feature
 
+	 Logger logger = new Logger();
 	public boolean createPost(Post post) throws ServiceException, InvalidPostException, InvalidUserException {
 
 		PostDAO postDAO = new PostDAO();
@@ -26,7 +27,7 @@ public class PostService {
 
 	} 
 
-//	Fundraise view service feature
+
 	public List<Post> viewPost() throws ServiceException {
 		PostDAO postDAO = new PostDAO();
 
@@ -38,20 +39,20 @@ public class PostService {
 		}
 	}
 
-//	Update post feature Service
+
 
 	public boolean updatePost(int id, Post post) throws ServiceException {
 
 		PostDAO postDAO = new PostDAO();
 
 		try { 
-//			PostValidation.validateTitle(post);
+
 
 			if (postDAO.updatePost(id, post)) {
-				System.out.println("Update Post for post was successfull");
+				logger.debug("Update Post for post was successfull");
 				return true;
 			} else {
-				System.out.println("Update Post was not successfull");
+				logger.debug("Update Post was not successfull");
 				return false;
 
 			}
@@ -69,7 +70,7 @@ public class PostService {
 		try {
 
 			if (postDAO.deletePost(postId)) {
-				System.out.println("Successfully deleted the post details");
+				logger.debug("Successfully deleted the post details");
 				return true;
 			} else {
 

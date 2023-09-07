@@ -1,15 +1,15 @@
 package com.fssa.freshbye.services;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import com.fssa.freshbye.utils.Logger;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-
 import com.fssa.freshbye.model.Post;
 import com.fssa.freshbye.service.PostService;
 import com.fssa.freshbye.service.exception.ServiceException;
 
 class TestPostUpdateFeature {
-
+	 Logger logger = new Logger();
 	@Test
 	void testUpdateSuccess() {
 
@@ -19,16 +19,16 @@ class TestPostUpdateFeature {
 
 			Post post = new Post();
 			post.setPostImage(
-					"https://img.freepik.com/free-photo/beauty-portrait-ginger-woman-with-flower-hair-sitting-by-mirror-table-with-bottle-lotion-while-looking-away_171337-1068.jpg?size=626&ext=jpg&ga=GA1.2.1319163761.1690984074&semt=ais");
-			post.setTitle("Title");
-			post.setDescription("I am a boy");
+					"https://welcome-to-freshbye-dude");
+			post.setTitle("Happy Holi😊");
+			post.setDescription("I am enjoy the fest of Holi in my college with my friends😊😊😊❤️");
 			post.setUserId(5);
  
-			assertTrue(Postservice.updatePost(7, post));
+			assertTrue(Postservice.updatePost(16, post));
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			logger.error(e);	
 
 		}
 	}
@@ -43,7 +43,7 @@ class TestPostUpdateFeature {
 			assertFalse(postservice.updatePost(9, post));
 
 		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
+			logger.debug(e.getMessage());
 
 		}
 	}

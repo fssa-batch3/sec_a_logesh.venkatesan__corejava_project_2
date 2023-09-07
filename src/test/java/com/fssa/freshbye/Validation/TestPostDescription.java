@@ -3,8 +3,6 @@ package com.fssa.freshbye.Validation;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
-import com.fssa.freshbye.model.Post;
 import com.fssa.freshbye.validation.PostValidation;
 import com.fssa.freshbye.validation.exceptions.InvalidPostException;
 
@@ -13,7 +11,7 @@ import com.fssa.freshbye.validation.exceptions.InvalidPostException;
 	@Test
 	void testValidCause() throws InvalidPostException {
 		String validStory = "Hello World";
-		assertTrue(PostValidation.validateTitle("Hello World"));
+		assertTrue(PostValidation.validateTitle(validStory));
 	}
 
 	@Test
