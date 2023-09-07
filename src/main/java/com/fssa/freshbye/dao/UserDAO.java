@@ -43,7 +43,7 @@ public class UserDAO {
 
    
 	public boolean emailExist(User user) throws SQLException {
-	    boolean is_match = false;
+	    boolean isMatch = false;
 	    String selectQuery = "SELECT * FROM userdata WHERE user_mail = ?";
 	    try (Connection connection = Utils.getConnection();
 	         PreparedStatement pst = connection.prepareStatement(selectQuery)) {
@@ -56,12 +56,12 @@ public class UserDAO {
 	             logger.debug("Email: " + emailID + " Password: " + password );
 
 	                if (user.getMail().equals(emailID)) {
-	                	is_match = true;
+	                	isMatch = true;
 	                }
 	            }
 	        }
 	    }
-	    return is_match;
+	    return isMatch;
 	}
 
    
