@@ -17,7 +17,7 @@ public class PostValidation {
 
 		String regex = "^[\\s\\S]*$";
 		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher((CharSequence) cost);
+		Matcher m = p.matcher(cost);
 		match = m.matches();
 
 		if (match) {
