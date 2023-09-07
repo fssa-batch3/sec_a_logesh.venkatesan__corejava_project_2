@@ -9,9 +9,11 @@ import java.util.List;
 
 import com.fssa.freshbye.dao.exceptions.DAOException;
 import com.fssa.freshbye.model.Post;
+import com.fssa.freshbye.utils.Logger;
 import com.fssa.freshbye.utils.Utils;
 
 public class PostDAO {
+	Logger logger = new Logger();
 	
 	/*
 	 * CreatePost Method is used for create or register the user in our website via insert data to Db
@@ -62,7 +64,7 @@ public class PostDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
             throw new DAOException("Error reading Post from the table");
         }
         return posts;
@@ -85,7 +87,7 @@ public class PostDAO {
                 return (rows == 1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+        	logger.error(e);
             throw new DAOException("Error updating Post in the table");
         }
     }

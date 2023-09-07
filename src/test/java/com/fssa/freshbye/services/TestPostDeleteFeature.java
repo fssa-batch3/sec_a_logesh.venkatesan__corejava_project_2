@@ -14,26 +14,25 @@ class TestPostDeleteFeature {
 
 	void deletePostSuccess() {
 		
-		Post post = new Post("Hello","https://img.freepik.com/free-photo/beauty-portrait-ginger-woman-with-flower-hair-sitting-by-mirror-table-with-bottle-lotion-while-looking-away_171337-1068.jpg?size=626&ext=jpg&ga=GA1.2.1319163761.1690984074&semt=ais","I am new to freshbye");
 		PostService postservice = new PostService();
 		try {
 
-			int postId = post.getId();
+			int postId = 7;
 
 			assertTrue(postservice.deletePost(postId));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-
+ 
 	}
 
 	@Test
 
-	void deleteFundraiseFailed() {
-		PostService fundraiseservice = new PostService();
+	void deletePostFailed() {
+		PostService postservice = new PostService();
 		try {
-			assertFalse(fundraiseservice.deletePost(-1));
+			assertFalse(postservice.deletePost(-1));
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}

@@ -74,7 +74,7 @@ public class PostService {
 			} else {
 
 				return false;
-			}
+			} 
 
 		} catch (DAOException e) {
 

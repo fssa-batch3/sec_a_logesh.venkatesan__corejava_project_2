@@ -23,7 +23,7 @@ class TestPostUpdateFeature {
 			post.setTitle("Title");
 			post.setDescription("I am a boy");
 			post.setUserId(5);
-
+ 
 			assertTrue(Postservice.updatePost(7, post));
 
 		} catch (ServiceException e) {
