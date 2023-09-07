@@ -38,7 +38,7 @@ import com.fssa.freshbye.service.exception.ServiceException;
 		} catch (ServiceException e) {
 			System.out.println("Registrtion failed");
 		
-
+ 
 		}
 
 	}

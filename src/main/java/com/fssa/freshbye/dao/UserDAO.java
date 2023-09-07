@@ -12,12 +12,11 @@ import com.fssa.freshbye.utils.Utils;
 
 public class UserDAO {
 
-	
-	
-	//connect to database
-//	Utils utils = new Utils();
+
 	boolean match = false;
-//	Get user from DB - Login
+/*	
+ * Get user from DB - Login
+ * */
    public boolean login(String email, String password) throws DAOException, SQLException {
 		
 	 
@@ -54,7 +53,6 @@ public class UserDAO {
 			return true;
 		}
    
-   //Email Not Exist
    public boolean EmailExist(User user) throws SQLException {
 		
 	   
@@ -78,28 +76,24 @@ public class UserDAO {
 	   return match;
 	}
    
-	
-	//add new user to DB - Register
+   
 	public boolean register(User user) throws SQLException {
-		//Get Connection
+	
 		Connection connection = Utils.getConnection();
 		
-		// Prepare SQL Statement
 		String insertQuery = "INSERT INTO userdata (user_name,user_mail,mobileno,user_pwd) VALUES (?,?,?,?);";
 		PreparedStatement pst = connection.prepareStatement(insertQuery);
-//		pst.setInt(1, user.getUserID());
+
 		pst.setString(1, user.getUsername());
 		pst.setString(2, user.getMail());
 		pst.setString(3,user.getMobileno());
 		pst.setString(4, user.getPassword());
-		//Execute query
 		int rows = pst.executeUpdate();
-		
-		//Return Successful or not
 		return (rows == 1);
 	}
 	
-	// update user
+	
+	
 	public boolean Update(User user , String email) throws SQLException {
 		   
 		   Connection connection = Utils.getConnection();
@@ -112,15 +106,12 @@ public class UserDAO {
 			pst.setString(3, user.getPassword());
 			pst.setString(4, user.getMail());
 		   
-		 //Execute query
 			int rows = pst.executeUpdate();
-			
-			//Return Successful or not
 			return (rows == 1); 
 }
 	
-	//delete user
-	// update user
+	
+	
 	public boolean Delete(User user1 , String email) throws SQLException {
 		   
 		   Connection connection = Utils.getConnection();
@@ -130,11 +121,7 @@ public class UserDAO {
 		   String selectQuery = "UPDATE userdata SET is_deleted = ? WHERE user_mail = " + email + ";";
 		   PreparedStatement pst = connection.prepareStatement(selectQuery);
 		   pst.setInt(1, is_delete);
-		   
-		 //Execute query
 			int rows = pst.executeUpdate();
-			
-			//Return Successful or not
 			return (rows == 1);
 }
 	

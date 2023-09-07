@@ -13,7 +13,6 @@ import com.fssa.freshbye.service.exception.ServiceException;
 	 void loginSuccess() {
 		UserService userService = new UserService();
 
-//		User user1 = new User("gopikannan2906@gmail.com",  "Wow@2002");
 		String email = "venkatesan@gmail.com";
 		String password = "Venky@1234";
 		try { 

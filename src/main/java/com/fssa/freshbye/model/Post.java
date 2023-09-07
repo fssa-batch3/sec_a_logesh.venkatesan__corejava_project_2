@@ -8,15 +8,17 @@ public class Post {
     private int userId;
 
      
-
-    // Constructor for view data
+/*
+ * Constructors Starts here
+ * */
+ 
     public Post(String postImage, String title, String description) {
         this.postImage = postImage;
         this.title = title;
         this.description = description;
     }
 
-    // Constructor for updating post
+
     public Post(String postImage, String title, String description, int userId) {
         this.postImage = postImage;
         this.title = title;
@@ -27,6 +29,16 @@ public class Post {
     public Post() {
 	}
 
+    
+    /*
+     * Contructors end Here
+     */
+    
+    
+    /*
+     * Setters and getters start here
+     */
+    
 	public String getPostImage() {
         return postImage;
     }

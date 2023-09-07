@@ -10,7 +10,9 @@ import com.fssa.freshbye.service.exception.ServiceException;
 
 class TestUpdateUserFeature {
 
-//	Success test case for update
+/*
+ * Success test case for update features
+ */
 	@Test
 	void testUpdateSuccess() {
 
@@ -28,7 +30,9 @@ class TestUpdateUserFeature {
 		
 	}
 
-//	Fail test case for update 
+	/*
+	 * failure test case for update features
+	 */
 
 	@Test
 	void testUpdateFail() {

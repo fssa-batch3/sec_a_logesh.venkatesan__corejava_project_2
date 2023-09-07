@@ -12,8 +12,10 @@ import com.fssa.freshbye.model.Post;
 import com.fssa.freshbye.utils.Utils;
 
 public class PostDAO {
-
-    // Create method
+	
+	/*
+	 * CreatePost Method is used for create or register the user in our website via insert data to Db
+	 * */
     public boolean createPost(Post post) throws DAOException {
     	
         String query = "INSERT INTO Postdetails (image_url, title, story, user_id) VALUES (?, ?, ?,?)";
@@ -34,7 +36,9 @@ public class PostDAO {
         }
     } 
 
-    // View method
+  /*
+   * Here we list the feature using query and connect with DB 
+   * */
     public List<Post> viewPost() throws DAOException {
         List<Post> posts = new ArrayList<>();
 
@@ -64,7 +68,9 @@ public class PostDAO {
         return posts;
     }
 
-    // Update method
+/*
+ * Here we can update our credentials via updatePost method 
+ * */
     public boolean updatePost(int id, Post post) throws DAOException {
         try {
             String query = "UPDATE Postdetails SET title = ?, story = ? WHERE post_id = ?";
@@ -84,7 +90,9 @@ public class PostDAO {
         }
     }
 
-    // Delete method
+    /*
+     * Here we can Delete our Account if needed via deletePost method 
+     * */
     public boolean deletePost(int postId) throws DAOException {
         String deleteQuery = "DELETE from Postdetails WHERE post_id=?";
         try (PreparedStatement ps = Utils.getConnection().prepareStatement(deleteQuery)) {
@@ -97,6 +105,9 @@ public class PostDAO {
         }
     }
 
+    /*
+     * Here we can Get UerId from post  via getUserIdFromPost method 
+     * */
     public int getUserIDFromPost() throws DAOException {
         String query = "SELECT user_id FROM Postdetails WHERE post_id = (SELECT MAX(post_id) FROM Postdetails)\n"
         		+ "";
