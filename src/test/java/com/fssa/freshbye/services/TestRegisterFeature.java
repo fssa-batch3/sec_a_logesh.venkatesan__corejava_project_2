@@ -15,7 +15,7 @@ import com.fssa.freshbye.service.exception.ServiceException;
 	 void testRegistrationSuccess() {
 
 		UserService userservice = new UserService();
-		User user1 = new User("ramu@gmail.com", "Ramu", "Ramu@1234", "9092500612");
+		User user1 = new User("koli@gmail.com", "koli", "Koli@1234", "9092500612");
 
 		try {
 			assertTrue(userservice.registerUser(user1)); 

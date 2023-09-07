@@ -91,14 +91,14 @@ public class UserValidator {
 		if (email == null)
 			return false;
 
-		String regex = "^.*@.*\\..*$";
+		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
 
 		/*
 		 * This regex matches strings that have the basic format of an email address,
 		 * with at least one "@" symbol followed by at least one period "." symbol.
 		 */
 
-		isMatch = Pattern.matches(regex, email);
+		isMatch = Pattern.compile(regex).matcher(email).matches();
 		if (isMatch) {
 			logger.debug("The email address is: Valid");
 		} else {
