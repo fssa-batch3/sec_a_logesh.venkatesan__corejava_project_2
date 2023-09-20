@@ -14,114 +14,116 @@ import com.fssa.freshbye.utils.Utils;
 
 public class PostDAO {
 	Logger logger = new Logger();
-	
+
 	/*
-	 * CreatePost Method is used for create or register the user in our website via insert data to Db
-	 * */
-    public boolean createPost(Post post) throws DAOException {
-    	
-        String query = "INSERT INTO Postdetails (image_url, title, story, user_id) VALUES (?, ?, ?,?)";
-        
-        try (  Connection connection = Utils.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
+	 * CreatePost Method is used for create or register the user in our website via
+	 * insert data to Db
+	 */
+	public boolean createPost(Post post) throws DAOException {
 
-            ps.setString(1, post.getPostImage());
-            ps.setString(2, post.getTitle());
-            ps.setString(3, post.getDescription());
-            ps.setInt(4, post.getUserId());
-             
-             
-            int rows = ps.executeUpdate();
+		String query = "INSERT INTO Postdetails (image_url, title, story, user_mail) VALUES (?, ?, ?,?)";
 
-            return rows == 1;
-        } catch (SQLException e) {
-            throw new DAOException("Error in inserting Post in table", e);
-        }
-    } 
+		try (Connection connection = Utils.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
 
-  /*
-   * Here we list the feature using query and connect with DB 
-   * */
-    public List<Post> viewPost() throws DAOException {
-        List<Post> posts = new ArrayList<>();
+			ps.setString(1, post.getPostImage());
+			ps.setString(2, post.getTitle());
+			ps.setString(3, post.getDescription());
+			ps.setString(4, post.getUserMail());
 
-        String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, Postdetails.image_url, Postdetails.title, Postdetails.story, Postdetails.user_id FROM userdata INNER JOIN Postdetails ON userdata.id = Postdetails.user_id";
-       
-        try (Connection connection = Utils.getConnection(); PreparedStatement ps = connection.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+			int rows = ps.executeUpdate();
 
-            while (rs.next()) {
-         rs.getString("user_name");
-               rs.getString("user_mail");
-              rs.getString("mobileno");
+			return rows == 1;
+		} catch (SQLException e) {
+			throw new DAOException("Error in inserting Post in table", e);
+		}
+	}
 
-                String postImage = rs.getString("image_url");
-                String title = rs.getString("title");
-                String description = rs.getString("story"); 
-            rs.getInt("user_id");
+	/*
+	 * Here we list the feature using query and connect with DB
+	 */
+	public List<Post> viewPost() throws DAOException {
+		List<Post> posts = new ArrayList<>();
 
-                // You need to create and set user information here
-                Post post = new Post(postImage, title, description);
-                posts.add(post);
-            }
+		String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, Postdetails.image_url, Postdetails.title, Postdetails.story, Postdetails.user_mail FROM userdata INNER JOIN Postdetails ON userdata.user_mail = Postdetails.user_mail";
 
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new DAOException("Error reading Post from the table");
-        }
-        return posts;
-    }
+		try (Connection connection = Utils.getConnection();
+				PreparedStatement ps = connection.prepareStatement(query);
+				ResultSet rs = ps.executeQuery()) {
 
-/*
- * Here we can update our credentials via updatePost method 
- * */
-    public boolean updatePost(int id, Post post) throws DAOException {
-        try {
-            String query = "UPDATE Postdetails SET title = ?, story = ? WHERE post_id = ?";
+			while (rs.next()) {
 
-            try (PreparedStatement ps = Utils.getConnection().prepareStatement(query)) {
+			String UserName = 	rs.getString("user_name");
+				rs.getString("user_mail");
+				rs.getString("mobileno");
+				String postImage = rs.getString("image_url");
+				String title = rs.getString("title");
+				String description = rs.getString("story");
+				rs.getString("user_mail");
 
-                ps.setString(1, post.getTitle());
-                ps.setString(2, post.getDescription());
-                ps.setInt(3, id);
+				// You need to create and set user information here
+				Post post = new Post(postImage, title, description,UserName);
+				posts.add(post);
+	
+			}
 
-                int rows = ps.executeUpdate();
-                return (rows == 1);
-            }
-        } catch (SQLException e) {
-        	logger.error(e);
-            throw new DAOException("Error updating Post in the table");
-        }
-    }
+		} catch (SQLException e) {
+			logger.error(e);
+			throw new DAOException("Error reading Post from the table");
+		}
+		return posts;
+	}
 
-    /*
-     * Here we can Delete our Account if needed via deletePost method 
-     * */
-    public boolean deletePost(int postId) throws DAOException {
-        String deleteQuery = "DELETE from Postdetails WHERE post_id=?";
-        try (PreparedStatement ps = Utils.getConnection().prepareStatement(deleteQuery)) {
+	/*
+	 * Here we can update our credentials via updatePost method
+	 */
+	public boolean updatePost(int id, Post post) throws DAOException {
+		try {
+			String query = "UPDATE Postdetails SET title = ?, story = ? WHERE post_id = ?";
 
-            ps.setInt(1, postId);
-            int rows = ps.executeUpdate();
-            return rows == 1;
-        } catch (SQLException e) {
-            throw new DAOException("Error in delete product method", e);
-        }
-    }
+			try (PreparedStatement ps = Utils.getConnection().prepareStatement(query)) {
 
-    /*
-     * Here we can Get UerId from post  via getUserIdFromPost method 
-     * */
-    public int getUserIDFromPost() throws DAOException {
-        String query = "SELECT user_id FROM Postdetails WHERE post_id = (SELECT MAX(post_id) FROM Postdetails)\n"
-        		+ "";
+				ps.setString(1, post.getTitle());
+				ps.setString(2, post.getDescription());
+				ps.setInt(3, id);
 
-        try (PreparedStatement ps = Utils.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt(1);
-            } else {
-                throw new DAOException("Error getting latest post id");
-            }
-        } catch (SQLException e) {
-            throw new DAOException("Error getting latest post id", e);
-        }
-    }
+				int rows = ps.executeUpdate();
+				return (rows == 1);
+			}
+		} catch (SQLException e) {
+			logger.error(e);
+			throw new DAOException("Error updating Post in the table");
+		}
+	}
+
+	/*
+	 * Here we can Delete our Account if needed via deletePost method
+	 */
+	public boolean deletePost(int postId) throws DAOException {
+		String deleteQuery = "DELETE from Postdetails WHERE post_id=?";
+		try (PreparedStatement ps = Utils.getConnection().prepareStatement(deleteQuery)) {
+
+			ps.setInt(1, postId);
+			int rows = ps.executeUpdate();
+			return rows == 1;
+		} catch (SQLException e) {
+			throw new DAOException("Error in delete product method", e);
+		}
+	}
+
+	/*
+	 * Here we can Get UerId from post via getUserIdFromPost method
+	 */
+	public int getUserIDFromPost() throws DAOException {
+		String query = "SELECT user_id FROM Postdetails WHERE post_id = (SELECT MAX(post_id) FROM Postdetails)\n" + "";
+
+		try (PreparedStatement ps = Utils.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt(1);
+			} else {
+				throw new DAOException("Error getting latest post id");
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Error getting latest post id", e);
+		}
+	}
 }

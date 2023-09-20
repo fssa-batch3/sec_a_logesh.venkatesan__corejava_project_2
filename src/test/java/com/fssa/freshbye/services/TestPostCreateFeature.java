@@ -17,17 +17,16 @@ class TestPostCreateFeature {
 	 Logger logger = new Logger();
 	@Test
 	void testCreateValid() throws InvalidPostException, InvalidUserException {
-		User user = new User();
+		
 		Post post = new Post();
-		user.setUsername("Raamu");
-	 
+	  
  
 		
 		post.setPostImage(
-				"https://welcome-to-freshbye-dude");
-		post.setTitle("Happy boli");
-		post.setDescription("I am enjoy the fest of boli in my college with my friends");
-		post.setUserId(5);
+				"https://ca.slack-edge.com/T032648LE-U041S8KPAUV-3be23a23657d-512");
+		post.setTitle("Karthick");
+		post.setDescription("Click with mirror");
+		post.setUserMail("gopikannan@gmail.com");
 		PostService postservice = new PostService();
 		try {
 			assertTrue(postservice.createPost(post));
@@ -51,9 +50,9 @@ PostService postservice = new PostService();
 
 		try {
 			assertFalse(postservice.createPost(post));
-			logger.debug("Failed to create an invalid Post");
+			logger.debug("Failed to create an invalid Post because of invalid or null credential");
 		} catch (ServiceException e) {
-			logger.error(e);	
+			logger.debug(e);	
 		}
 	}
 

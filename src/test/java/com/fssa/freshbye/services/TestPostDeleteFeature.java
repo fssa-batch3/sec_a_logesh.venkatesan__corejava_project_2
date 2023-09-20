@@ -19,8 +19,8 @@ class TestPostDeleteFeature {
 		PostService postservice = new PostService();
 		try {
 
-			int postId = 16;
-
+			int postId = 2;
+ 
 			assertTrue(postservice.deletePost(postId));
 		} catch (ServiceException e) {
 			logger.error(e);	

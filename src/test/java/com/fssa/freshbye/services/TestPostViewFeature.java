@@ -6,11 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import com.fssa.freshbye.model.Post;
-import com.fssa.freshbye.model.User;
 import com.fssa.freshbye.service.PostService;
 import com.fssa.freshbye.service.exception.ServiceException;
-import com.fssa.freshbye.validation.exceptions.InvalidPostException;
-import com.fssa.freshbye.validation.exceptions.InvalidUserException;
 
 class TestPostViewFeature {
 	 Logger logger = new Logger();
@@ -18,17 +15,11 @@ class TestPostViewFeature {
 	 * Its used to list the posts which is post by users 
 	 */
 	@Test
-	void testviewPostValid() throws ServiceException, InvalidPostException, InvalidUserException {
-		User user = new User(); 
-		user.setUsername("Gopu");
+	void testviewPostValid(){
 	
-
 		PostService postservice = new PostService();
-		
-
 		 
 		try {
-
 
 			List<Post> posts = postservice.viewPost();
 

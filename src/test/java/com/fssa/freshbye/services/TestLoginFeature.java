@@ -14,8 +14,8 @@ import com.fssa.freshbye.utils.Logger;
 	 void loginSuccess() {
 		UserService userService = new UserService();
 
-		String email = "ramu@gmail.com";
-		String password = "Ramu@1234";
+		String email = "gopikannan@gmail.com";
+		String password = "Wow@2002";
 		try { 
 			 
 			assertTrue(userService.loginUser(email, password));

@@ -18,14 +18,14 @@ class TestUpdateUserFeature {
 
 		UserService userservice = new UserService();
 
-		User user1 = new User("ramu@gmail.com", "Raamu", "Raamu@1234", "8270853318");
+		User user1 = new User("ramu@gmail.com", "Ramu", "Raamu@1234", "8270853318");
 
 		try {
 			assertTrue(userservice.updateUser(user1));
 		} catch (ServiceException e) {
 
 			logger.debug(e.getMessage());
-
+ 
 		}
 
 	}

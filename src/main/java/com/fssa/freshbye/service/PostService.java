@@ -24,22 +24,16 @@ public class PostService {
 		} catch (DAOException e) { 
 			throw new ServiceException(e.getMessage(), e);
 		}
-
 	} 
-
 
 	public List<Post> viewPost() throws ServiceException {
 		PostDAO postDAO = new PostDAO();
-
 		try {
 			return postDAO.viewPost();
-
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
-
-
 
 	public boolean updatePost(int id, Post post) throws ServiceException {
 

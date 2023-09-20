@@ -29,8 +29,15 @@ public class UserDAO {
 	                throw new DAOException("Invalid Login Credentials");
 	            } else {
 	                if (!rs.getString("user_pwd").equals(password)) {
-	                	 logger.debug("2");
+	                    logger.debug("2");
 	                    throw new DAOException("Invalid Login Credentials");
+	                } else {
+	                    // User has logged in successfully, so update is_active to 1
+	                    String updateQuery = "UPDATE userdata SET is_active = 1 WHERE user_mail = ?";
+	                    try (PreparedStatement updatePs = con.prepareStatement(updateQuery)) {
+	                        updatePs.setString(1, email);
+	                        updatePs.executeUpdate();
+	                    }
 	                }
 	            }
 	        }
@@ -40,6 +47,7 @@ public class UserDAO {
 	    }
 	    return true;
 	}
+
 
    
 	public boolean emailExist(User user) throws SQLException {

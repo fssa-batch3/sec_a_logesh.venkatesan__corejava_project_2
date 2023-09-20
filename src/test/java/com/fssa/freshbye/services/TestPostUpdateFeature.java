@@ -20,11 +20,12 @@ class TestPostUpdateFeature {
 			Post post = new Post();
 			post.setPostImage(
 					"https://welcome-to-freshbye-dude");
-			post.setTitle("Happy Holi😊");
-			post.setDescription("I am enjoy the fest of Holi in my college with my friends😊😊😊❤️");
-			post.setUserId(5);
+			post.setTitle("Happy Holi");
+		 	post.setDescription("I am enjoy the fest of Holi in my college with my friends😊😊😊❤️");
+			post.setUserMail("gopikannan@gmail.com");
+			post.setpostId(1);
  
-			assertTrue(Postservice.updatePost(16, post));
+			assertTrue(Postservice.updatePost(2, post));
 
 		} catch (ServiceException e) {
 
@@ -37,7 +38,7 @@ class TestPostUpdateFeature {
 	void testUpdateFail() {
 
 		PostService postservice = new PostService();
-		Post post = new Post(null, null, null);
+		Post post = new Post(null, null, null,null);
 		try {
 
 			assertFalse(postservice.updatePost(9, post));

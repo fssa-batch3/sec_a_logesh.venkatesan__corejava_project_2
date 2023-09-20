@@ -75,6 +75,7 @@ public class UserService {
 				return false;
 			}
 		} catch (SQLException | DAOException e) {
+			e.printStackTrace();
 			throw new ServiceException(e);
 		}
 	}

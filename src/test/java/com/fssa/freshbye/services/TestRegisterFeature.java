@@ -15,7 +15,7 @@ import com.fssa.freshbye.service.exception.ServiceException;
 	 void testRegistrationSuccess() {
 
 		UserService userservice = new UserService();
-		User user1 = new User("koli@gmail.com", "koli", "Koli@1234", "9092500612");
+		User user1 = new User("raju@gmail.com", "Raju", "Abc123!@#", "9092500612");
 
 		try {
 			assertTrue(userservice.registerUser(user1)); 
@@ -26,15 +26,15 @@ import com.fssa.freshbye.service.exception.ServiceException;
 		}
 
 	}
-  
+   
 	@Test 
 	 void testRegistrationFail() throws DAOException {
 
 		UserService userservice = new UserService();
-		User user = new User("saran@gmail.com", "saran", "Wow@2002", "9092500612");
+		User user = new User("sarangmail.com", "saran", "wow@2002", "9092500612");
 
 		try {
-			assertTrue(userservice.registerUser(user));
+			assertFalse(userservice.registerUser(user));
 		} catch (ServiceException e) {
 			logger.debug("Registrtion failed");
 		
