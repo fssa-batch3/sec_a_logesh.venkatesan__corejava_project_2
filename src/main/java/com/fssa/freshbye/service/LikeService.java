@@ -30,4 +30,18 @@ public class LikeService {
             throw new ServiceException(e.getMessage(), e);
         }
     }
+    
+    public int getLikeCount(int postId) throws ServiceException {
+        LikeDAO likeDAO = new LikeDAO();
+
+        try {
+            if(postId <= 0) {
+                throw new ServiceException("Invalid postId: " + postId);
+            }
+            return likeDAO.getLikeCount(postId);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
 }

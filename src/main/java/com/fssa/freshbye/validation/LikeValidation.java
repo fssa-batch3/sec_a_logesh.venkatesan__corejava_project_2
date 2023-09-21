@@ -33,4 +33,15 @@ public class LikeValidation {
             throw new InvalidLikeException("The PostID must be greater than 0.");
         }
     }
+    
+    public static boolean validateLikeCount(int likeCount) throws InvalidLikeException {
+        if (likeCount >= 0) {
+            logger.debug("The LikeCount is valid.");
+            return true;
+        } else {
+            throw new InvalidLikeException("The LikeCount must be greater than or equal to 0.");
+        }
+    }
+
+    
 }

@@ -1,5 +1,11 @@
 package com.fssa.freshbye.service;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fssa.freshbye.dao.PostDAO;
@@ -7,6 +13,7 @@ import com.fssa.freshbye.dao.exceptions.DAOException;
 import com.fssa.freshbye.model.Post;
 import com.fssa.freshbye.service.exception.ServiceException;
 import com.fssa.freshbye.utils.Logger;
+import com.fssa.freshbye.utils.Utils;
 import com.fssa.freshbye.validation.PostValidation;
 import com.fssa.freshbye.validation.exceptions.InvalidPostException;
 import com.fssa.freshbye.validation.exceptions.InvalidUserException;
@@ -34,6 +41,15 @@ public class PostService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
+	public List<Post> viewMyPost(String userMail) throws ServiceException {
+	    PostDAO postDAO = new PostDAO();
+	    try {
+	        return postDAO.viewMyPost(userMail);
+	    } catch (DAOException e) {
+	        throw new ServiceException(e.getMessage(), e);
+	    }
+	}
+
 
 	public boolean updatePost(int id, Post post) throws ServiceException {
 
@@ -86,5 +102,21 @@ public class PostService {
 	        }
 	    }
 
-	
-}
+	  public boolean blockPost(String userId, int postId) throws ServiceException {
+		  PostDAO postDAO = new PostDAO();
+			try {
+
+				if (postDAO.blockPost(userId, postId)) {
+					logger.debug("Successfully Block the post details");
+					return true;
+				} else {
+
+					return false;
+				} 
+
+			} catch (DAOException e) {
+
+				throw new ServiceException(e.getMessage(), e);
+			}
+	    }}
+	 

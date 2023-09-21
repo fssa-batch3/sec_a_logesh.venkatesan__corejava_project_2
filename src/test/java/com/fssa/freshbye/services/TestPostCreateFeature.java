@@ -23,10 +23,11 @@ class TestPostCreateFeature {
  
 		
 		post.setPostImage(
-				"https://ca.slack-edge.com/T032648LE-U041S8KPAUV-3be23a23657d-512");
-		post.setTitle("Karthick");
-		post.setDescription("Click with mirror");
+				"https://th.bing.com/th/id/OIP.sTg2ki8pNQsvGKfe6WLjvQHaEK?w=328&h=184&c=7&r=0&o=5&dpr=1.5&pid=1.7");
+		post.setTitle("Hey! Peter");
+		post.setDescription("Spiderman Noway Home");
 		post.setUserMail("gopikannan@gmail.com");
+		post.setpostId(1);
 		PostService postservice = new PostService();
 		try {
 			assertTrue(postservice.createPost(post));
