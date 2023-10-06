@@ -44,7 +44,7 @@ public class PostService {
 	public List<Post> viewMyPost(String userMail) throws ServiceException {
 	    PostDAO postDAO = new PostDAO();
 	    try {
-	        return postDAO.viewMyPost(userMail);
+	        return postDAO.myPost(userMail);
 	    } catch (DAOException e) {
 	        throw new ServiceException(e.getMessage(), e);
 	    }

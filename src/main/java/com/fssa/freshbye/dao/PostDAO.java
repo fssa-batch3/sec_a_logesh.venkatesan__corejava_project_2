@@ -37,6 +37,44 @@ public class PostDAO {
 			throw new DAOException("Error in inserting Post in table", e);
 		}
 	}
+	
+	/*
+	 * Here we list of my post the feature using query and connect with DB
+	 */
+	public List<Post> myPost(String email) throws DAOException {
+	    List<Post> posts = new ArrayList<>();
+
+	    String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, Postdetails.image_url,Postdetails.post_id, Postdetails.title, Postdetails.story, Postdetails.user_mail FROM userdata INNER JOIN Postdetails ON userdata.user_mail = Postdetails.user_mail WHERE Postdetails.is_deleted = 0 AND Postdetails.is_spam=0 AND userdata.user_mail = ?";
+
+	    try (Connection connection = Utils.getConnection();
+	            PreparedStatement ps = connection.prepareStatement(query)) {
+
+	        ps.setString(1, email); // Set the email parameter
+
+	        try (ResultSet rs = ps.executeQuery()) {
+	            while (rs.next()) {
+	                Post post = new Post();
+	                post.setUsername(rs.getString("user_name"));
+	                post.setUserMail(rs.getString("user_mail"));
+	                post.setPostImage(rs.getString("image_url"));
+	                post.setTitle(rs.getString("title"));
+	                post.setDescription(rs.getString("story"));
+	                post.setpostId(rs.getInt("post_id"));
+
+	                // You need to create and set user information here
+
+	                System.out.println(post);
+	                posts.add(post);
+	            }
+	        }
+
+	    } catch (SQLException e) {
+	        logger.error(e);
+	        throw new DAOException("Error reading Post from the table");
+	    }
+	    return posts;
+	}
+
 
 	/*
 	 * Here we list the feature using query and connect with DB
@@ -44,7 +82,7 @@ public class PostDAO {
 	public List<Post> viewPost() throws DAOException {
 		List<Post> posts = new ArrayList<>();
 
-		String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, Postdetails.image_url,Postdetails.post_id, Postdetails.title, Postdetails.story, Postdetails.user_mail FROM userdata INNER JOIN Postdetails ON userdata.user_mail = Postdetails.user_mail";
+		String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, Postdetails.image_url,Postdetails.post_id, Postdetails.title, Postdetails.story, Postdetails.user_mail FROM userdata INNER JOIN Postdetails ON userdata.user_mail = Postdetails.user_mail WHERE Postdetails.is_deleted = 0";
 
 		try (Connection connection = Utils.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query);
@@ -76,38 +114,7 @@ public class PostDAO {
 	 * Here we our own list the feature using query and connect with DB
 	 */
 
-	public List<Post> viewMyPost(String userMail) throws DAOException {
-		List<Post> posts = new ArrayList<>();
-
-		String query = "SELECT userdata.user_name, userdata.mobileno,userdata.user_mail, Postdetails.image_url, Postdetails.post_id, Postdetails.title, Postdetails.story FROM userdata INNER JOIN Postdetails ON userdata.user_mail = Postdetails.user_mail WHERE userdata.user_mail = ? OR Postdetails.user_mail = ?";
-
-		try (Connection connection = Utils.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
-
-			// Set the userMail value for the placeholders in the query
-			ps.setString(1, userMail);
-			ps.setString(2, userMail);
-
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					Post post = new Post();
-					post.setUsername(rs.getString("user_name"));
-					post.setUserMail(rs.getString("user_mail"));
-					post.setPostImage(rs.getString("image_url"));
-					post.setTitle(rs.getString("title"));
-					post.setDescription(rs.getString("story"));
-					post.setpostId(rs.getInt("post_id"));
-
-					System.out.println(post);
-					posts.add(post);
-				}
-			}
-		} catch (SQLException e) {
-			logger.error(e);
-			throw new DAOException("Error reading Post from the table", e);
-		}
-		return posts;
-	}
-
+	
 	/*
 	 * Here we can update our credentials via updatePost method
 	 */

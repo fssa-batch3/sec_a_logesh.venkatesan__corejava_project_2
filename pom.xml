@@ -62,7 +62,12 @@
 	  	<artifactId>junit-jupiter-engine</artifactId>
 	  	<version>5.9.1</version>
 	  </dependency>
-	  
-  </dependencies>
+
+	   <dependency>
+	   	<groupId>com.fssa</groupId>
+	   	<artifactId>freshbye-web</artifactId>
+	   	<version>0.0.1-SNAPSHOT</version>
+	   </dependency>
+	</dependencies>
   
 </project>

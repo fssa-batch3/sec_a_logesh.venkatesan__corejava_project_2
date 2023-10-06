@@ -8,7 +8,46 @@ public class User {
 	private String username;
 	private String password;
 	private String mobileno;
+	private static String profileImage;
 	private boolean isActive;
+	private boolean isDeleted;
+	
+	
+	
+	
+	
+	
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+
+	public static String getProfileImage() {
+		return profileImage;
+	}
+
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+
+
+
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+
+
+	
+	
 	
  
 	public void setIsActive(boolean isActive) {
@@ -19,12 +58,13 @@ public class User {
 	
 
 	 
-	public User(String mail, String username, String password, String mobileno) {
+	public User(String mail, String username, String password, String mobileno,String profileImage) {
 
 		this.mail = mail;
 		this.username = username;
 		this.password = password;
 		this.mobileno = mobileno;
+		this.profileImage=profileImage;
 	}
 
 	public User(String userMail, String userPwd) {
@@ -88,12 +128,16 @@ public class User {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", mail=" + mail + ", username=" + username + ", password=" + password + ", mobileno="
-				+ mobileno + ", is_active=" + isActive + "]";
+				+ mobileno + ", profileImage=" + profileImage + ", isActive=" + isActive + ", isDeleted=" + isDeleted
+				+ "]";
 	}
+
+
+
+	
 
 	
 	

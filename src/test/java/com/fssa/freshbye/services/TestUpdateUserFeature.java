@@ -18,7 +18,7 @@ class TestUpdateUserFeature {
 
 		UserService userservice = new UserService();
 
-		User user1 = new User("ramu@gmail.com", "Ramu", "Raamu@1234", "8270853318");
+		User user1 = new User("ramu@gmail.com", "Ramasamy", "Ramu@12344", "8270853318","https://l1nk.dev/DipD0");
 
 		try {
 			assertTrue(userservice.updateUser(user1));
@@ -39,7 +39,7 @@ class TestUpdateUserFeature {
 
 		UserService userservice = new UserService();
 
-		User user1 = new User("vivky@2002", "VickyKannan", "Kon@2002", "9028848999");
+		User user1 = new User("vivky@2002", "VickyKannan", null, "9028848999","https://l1nk.dev/DipD0");
 
 		try {
 			assertFalse(userservice.updateUser(user1));
