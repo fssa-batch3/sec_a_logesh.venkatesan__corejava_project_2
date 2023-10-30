@@ -8,7 +8,7 @@ public class User {
 	private String username;
 	private String password;
 	private String mobileno;
-	private static String profileImage;
+	private String profileImage;
 	private boolean isActive;
 	private boolean isDeleted;
 	
@@ -27,7 +27,7 @@ public class User {
 	}
 
 
-	public static String getProfileImage() {
+	public  String getProfileImage() {
 		return profileImage;
 	}
 

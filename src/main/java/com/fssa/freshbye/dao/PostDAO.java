@@ -82,18 +82,19 @@ public class PostDAO {
 	public List<Post> viewPost() throws DAOException {
 		List<Post> posts = new ArrayList<>();
 
-		String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, Postdetails.image_url,Postdetails.post_id, Postdetails.title, Postdetails.story, Postdetails.user_mail FROM userdata INNER JOIN Postdetails ON userdata.user_mail = Postdetails.user_mail WHERE Postdetails.is_deleted = 0";
-
+		String query = "SELECT userdata.user_name, userdata.profileImage, userdata.user_mail, userdata.mobileno, " + "Postdetails.image_url, Postdetails.post_id, Postdetails.title, Postdetails.story, Postdetails.user_mail " + "FROM userdata INNER JOIN Postdetails ON userdata.user_mail = Postdetails.user_mail " + "WHERE Postdetails.is_deleted = 0 AND Postdetails.is_spam = 0";
 		try (Connection connection = Utils.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query);
 				ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
 				Post post = new Post();
+				
 				post.setUsername(rs.getString("user_name"));
 				post.setUserMail(rs.getString("user_mail"));
 				post.setPostImage(rs.getString("image_url"));
 				post.setTitle(rs.getString("title"));
+			post.setUserProfile(rs.getString("profileImage"));
 				post.setDescription(rs.getString("story"));
 				post.setpostId(rs.getInt("post_id"));
 
@@ -118,24 +119,26 @@ public class PostDAO {
 	/*
 	 * Here we can update our credentials via updatePost method
 	 */
-	public boolean updatePost(int id, Post post) throws DAOException {
-		try {
-			String query = "UPDATE Postdetails SET title = ?, story = ? WHERE post_id = ?";
+	public boolean updatePost(String userEmail, int postId, Post post) throws DAOException {
+	    try {
+	        String query = "UPDATE Postdetails SET title = ?, story = ? WHERE post_id = ? AND user_email = ?";
 
-			try (PreparedStatement ps = Utils.getConnection().prepareStatement(query)) {
+	        try (PreparedStatement ps = Utils.getConnection().prepareStatement(query)) {
 
-				ps.setString(1, post.getTitle());
-				ps.setString(2, post.getDescription());
-				ps.setInt(3, id);
+	            ps.setString(1, post.getTitle());
+	            ps.setString(2, post.getDescription());
+	            ps.setInt(3, postId);
+	            ps.setString(4, userEmail);
 
-				int rows = ps.executeUpdate();
-				return (rows == 1);
-			}
-		} catch (SQLException e) {
-			logger.error(e);
-			throw new DAOException("Error updating Post in the table");
-		}
+	            int rows = ps.executeUpdate();
+	            return (rows == 1);
+	        }
+	    } catch (SQLException e) {
+	        logger.error(e);
+	        throw new DAOException("Error updating Post in the table");
+	    }
 	}
+
 
 	/*
 	 * Here we can Delete our Account if needed via deletePost method

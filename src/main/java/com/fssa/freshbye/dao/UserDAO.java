@@ -30,13 +30,9 @@ public class UserDAO {
 	                logger.debug("1");
 	                throw new DAOException("Invalid Login Credentials");
 	            } else {
-	                PasswordEncryptAndDecryptService encryption = new PasswordEncryptAndDecryptService();
 	                String encryptedPassword = rs.getString("user_pwd");
-	                System.out.println("User Password before decrypted : " + encryptedPassword);
-	                String decryptedPassword = encryption.Encrypt(password);
-	                System.out.println("User Password after decrypted : " + decryptedPassword);
-	                
-	                if (encryptedPassword != null && !encryptedPassword.equals(decryptedPassword)) {
+	               
+	                if (encryptedPassword != null && !encryptedPassword.equals(password)) {
 	                    logger.debug("User credential not same");
 	                    throw new DAOException("Invalid Login Password");
 	                
@@ -187,7 +183,7 @@ public class UserDAO {
 			if (rs.next()) {
 				return rs.getInt("id");
 			} else {
-				throw new SQLException("No user found with this email");
+				throw new SQLException("No user found with this email"+email);
 			}
 		}
 	}

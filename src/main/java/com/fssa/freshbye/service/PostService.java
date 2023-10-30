@@ -51,27 +51,29 @@ public class PostService {
 	}
 
 
-	public boolean updatePost(int id, Post post) throws ServiceException {
+	public boolean updatePost(String userEmail, int postId, Post post) throws ServiceException {
+	    PostDAO postDAO = new PostDAO();
 
-		PostDAO postDAO = new PostDAO();
+	    try {
+	       
 
-		try { 
+	        if (postDAO.updatePost(userEmail, postId, post)) {
+	            logger.debug("Update Post for post was successful");
+	            return true;
+	        } else {
+	            logger.debug("Update Post was not successful");
+	            return false;
+	        }
 
-
-			if (postDAO.updatePost(id, post)) {
-				logger.debug("Update Post for post was successfull");
-				return true;
-			} else {
-				logger.debug("Update Post was not successfull");
-				return false;
-
-			}
-
-		} catch (DAOException e) {
-			throw new ServiceException(e.getMessage(), e);
-		}
-
+	    } catch (DAOException e) {
+	        throw new ServiceException(e.getMessage(), e);
+	    }
 	}
+
+	private int getUserIdByEmail(String userEmail) {
+	    return 0;
+	}
+
 
 
 

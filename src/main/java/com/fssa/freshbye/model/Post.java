@@ -5,8 +5,9 @@ public class Post {
 	private String postImage;
 	private String title;
 	private String description;
-	private static String userMail;
+	private String userMail;
 	private String username;
+	private String userProfile;
 	private int postId;
 
 	/*
@@ -21,12 +22,21 @@ public class Post {
 		this.username = username;
 	}
 
-	public static  String getUserMail() {
+	public String getUserMail() {
 		return userMail;
 	}
 
-	public static String setUserMail(String userMail) {
-		return userMail = userMail;
+	public void setUserMail(String userMail) {
+		this.userMail = userMail;
+	}
+	
+
+	public String getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	public Post(String postImage, String title, String description, String Username) {
