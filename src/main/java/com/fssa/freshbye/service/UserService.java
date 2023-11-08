@@ -18,9 +18,10 @@ public class UserService {
 	public boolean registerUser(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
 		User user1 = new User(user.getMail(), user.getPassword());
-
+		
 		try {
 			if (UserValidator.validateUser(user) && !userDAO.emailExist(user1)) {
+				logger.debug("Email Exist"+userDAO.emailExist(user1));
 				if (userDAO.register(user)) {
 					logger.debug("DAO process cleared");
 					logger.debug(user.getUsername() + " Successfully Registered! Welcome to freshBye");
@@ -28,11 +29,13 @@ public class UserService {
 					return true;
 				} else {
 					logger.debug("DAO process not cleared");
+					
 					return false;
 				}
 				
 			} else {
 				logger.debug("Validation process not cleared");
+				//throw new ServiceException("");
 				return false;
 			}
 		} catch (SQLException | InvalidUserException e) {

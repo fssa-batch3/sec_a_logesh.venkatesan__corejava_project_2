@@ -67,6 +67,7 @@ public class UserDAO {
 
 					if (user.getMail().equals(emailID)) {
 						isMatch = true;
+						return isMatch;
 					}
 				}
 			}
